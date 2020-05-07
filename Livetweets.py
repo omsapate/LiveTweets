@@ -7,9 +7,10 @@ import time
 class LiveTweets(StreamListener):
 	def on_data(self, data):
 		tweet = json.loads(data)
-		print(tweet)
-		print()
-		time.sleep(3)
+		if "created_at" in tweet:
+			print(tweet["created_at"][4:-10] + " " + tweet["text"] + "\n")
+		return True
+	
 	def on_error(self,status):
 		print(status)
 		print()
